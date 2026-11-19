@@ -16,6 +16,13 @@ void loop() {
   // let the LED follow millis() value up, then back to zero, rinse, repeat:
 
   TimerCAM.Power.setLed( ( (millis() >> SPEED) & BIT9MAX) > BIT8MAX?   ~((millis() >> SPEED) & BIT9MAX): (millis() >> SPEED) & BIT9MAX)  ;
+  // or
+  analogWrite(LED_GPIO_NUM,  
+            ((millis() >> SPEED) & BIT9MAX) > BIT8MAX ?   
+              ~(millis() >> SPEED) & BIT9MAX
+            :
+              (millis() >> SPEED) & BIT9MAX
+            ) ;
   
   //
   // do something else
